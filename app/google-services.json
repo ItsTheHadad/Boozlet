@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "393544533911",
+    "project_id": "boozlet",
+    "storage_bucket": "boozlet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393544533911:android:ba0170582698553312a6d2",
+        "android_client_info": {
+          "package_name": "com.example.boozlet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393544533911-2nnkhm79hqtvr2bb0unvt2944lq3aeio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.boozlet",
+            "certificate_hash": "65164d6e1f740c9bd4687e7f8ad31f143690768e"
+          }
+        },
+        {
+          "client_id": "393544533911-0jj855a2ptup6gttd4ftnm9ek3d7o4l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACqs5qyGekZRAmTmp3rXLyWCbs9dm3rHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393544533911-0jj855a2ptup6gttd4ftnm9ek3d7o4l3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
