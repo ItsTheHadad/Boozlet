@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void moveToMainActivity(FirebaseUser user) {
-        Intent intent = new Intent(this, Main2Activity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("username",user.getDisplayName());
         startActivity(intent);
         finish();
