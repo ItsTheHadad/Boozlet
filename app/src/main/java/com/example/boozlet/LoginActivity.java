@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setAvailableProviders(providers)
                 .setTheme(com.google.android.material.R.style.Base_V14_Theme_Material3_Dark)
                 .setLogo(R.drawable.ic_signin_logo) // off center , fix //TODO
-                .setIsSmartLockEnabled(false) // remove when not testing //TODO
+                .setIsSmartLockEnabled(false) // remove when not testings //TODO
                 .build();
         signInLauncher.launch(signInIntent);
     }
