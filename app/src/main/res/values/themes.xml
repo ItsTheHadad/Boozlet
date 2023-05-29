@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Boozlet" parent="Base.Theme.Boozlet" />
+    <style name="Theme.Boozlet.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Boozlet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Boozlet.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -58,12 +58,12 @@ public class LoginActivity extends AppCompatActivity {
             // response.getError().getErrorCode() and handle the error.
             // ...
             Toast.makeText(this,"Unsuccessful Login! , try again",Toast.LENGTH_SHORT).show();
-            //repeat??
+            //repeat?? //TODO
         }
     }
 
     private void moveToMainActivity(FirebaseUser user) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Main2Activity.class);
         intent.putExtra("username",user.getDisplayName());
         startActivity(intent);
         finish();
@@ -82,6 +82,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setTheme(com.google.android.material.R.style.Base_V14_Theme_Material3_Dark)
+                .setLogo(R.drawable.ic_signin_logo) // off center , fix //TODO
+                .setIsSmartLockEnabled(false) // remove when not testing //TODO
                 .build();
         signInLauncher.launch(signInIntent);
     }
