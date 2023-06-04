@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user == null)
             login();
         else
-            moveToMainActivity(user);
+            moveToMainActivity2(user);
 
     }
 
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             // ...
 
-            moveToMainActivity(user);
+            moveToMainActivity2(user);
 
         } else {
             // Sign in failed. If response is null the user canceled the
@@ -62,8 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void moveToMainActivity(FirebaseUser user) {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void moveToMainActivity2(FirebaseUser user) {
+        Intent intent = new Intent(this, MainActivity2.class);
         intent.putExtra("username",user.getDisplayName());
         startActivity(intent);
         finish();
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setTheme(com.google.android.material.R.style.Base_V14_Theme_Material3_Dark)
+                .setTheme(com.google.android.material.R.style.Base_Theme_AppCompat)
                 .setLogo(R.drawable.ic_signin_logo) // off center , fix //TODO
                 .setIsSmartLockEnabled(false) // remove when not testings //TODO
                 .build();
