@@ -4,22 +4,38 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.boozlet.ItemAdapter;
+import com.example.boozlet.ItemDataManager;
 import com.example.boozlet.R;
 import com.example.boozlet.databinding.FragmentInventoryBinding;
 
 public class InventoryFragment extends Fragment {
 
-    private RecyclerView myInventoryRV;
+    private RecyclerView mainLSTItems; // should it be final? like when generating
+
+    private ItemAdapter itemAdapter;
 
     private FragmentInventoryBinding binding;
+
+
+    private Observer<ItemDataManager> observer = new Observer<ItemDataManager>() {
+        @Override
+        public void onChanged(ItemDataManager itemDataManager) {
+            itemAdapter.updateItems(itemDataManager);
+        }
+    };
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,18 +45,22 @@ public class InventoryFragment extends Fragment {
         binding = FragmentInventoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        mainLSTItems = binding.mainLSTItems;
+        //mainLSTItems.setHasFixedSize(true);
+        //not sure if needed
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        mainLSTItems.setLayoutManager(linearLayoutManager);
 
-//        final TextView textView = binding.textInventory;
-//        inventoryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        itemAdapter = new ItemAdapter(getContext(),inventoryViewModel.getItems().getValue());
+
+        mainLSTItems.setAdapter(itemAdapter);
+        inventoryViewModel.getItems().observe(getViewLifecycleOwner(),observer);
+
+
         return root;
     }
 
-    private void findViews(View view){
-        myInventoryRV = view.findViewById(R.id.inventory_mylist);
-        myInventoryRV.setHasFixedSize(true);
-        myInventoryRV.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-    }
 
     @Override
     public void onDestroyView() {

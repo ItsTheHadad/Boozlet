@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     android:layout_margin="4dp"
-    android:elevation="8dp"
-    app:cardElevation="8dp"
+    android:elevation="4dp"
+    app:cardElevation="4dp"
     android:backgroundTint="@color/light_banana"
     >
 

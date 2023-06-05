@@ -59,6 +59,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(itemView);
             item_IMG_favorite = itemView.findViewById(R.id.item_IMG_favorite);
             title_TXT_name = itemView.findViewById(R.id.title_TXT_name);
+
+            item_IMG_favorite.setOnClickListener(v ->{
+               Item item = getItem(getAdapterPosition());
+               if(item.isOwned())
+                   item.setOwned(false);
+               else
+                   item.setOwned(true);
+            });
+
         }
     }
 

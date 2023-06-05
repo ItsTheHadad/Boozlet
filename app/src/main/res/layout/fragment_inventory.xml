@@ -4,75 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/banana"
-    tools:context=".ui.inventory.InventoryFragment"
-    >
+    tools:context=".ui.inventory.InventoryFragment">
 
-
-    <LinearLayout
-        android:id="@+id/linear_layout"
+    <RelativeLayout
+        android:id="@+id/inv_LST_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/layout_bg_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        >
 
-
-        <RelativeLayout
-            android:id="@+id/inv_LST_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/title_TXT_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="6dp"
-                android:layout_toStartOf="@id/title_IMG_arrow"
-                android:maxLines="1"
-                android:minLines="1"
-                android:text="Title Name"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/title_IMG_arrow"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="6dp"
-                app:srcCompat="@drawable/down_arrow" />
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_TXT_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/expandable_layout"
-            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
+            android:layout_toStartOf="@id/title_IMG_arrow"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="My Ingredients"
+            android:textColor="@color/soft_black300"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/title_IMG_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="6dp"
-            >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/items_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/each_item" />
-
-        </RelativeLayout>
+            app:srcCompat="@drawable/right_arrow" />
 
 
+    </RelativeLayout>
 
-    </LinearLayout>
+
+    <!-- start rv -->
+    <RelativeLayout
+        android:id="@+id/rl_items"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="12dp"
+        android:layout_below="@+id/inv_LST_title"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="6dp"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_LST_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:listitem="@layout/each_item" />
+
+    </RelativeLayout>
+    <!-- end rv -->
 
 
 </RelativeLayout>

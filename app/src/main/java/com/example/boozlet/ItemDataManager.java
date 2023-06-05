@@ -12,7 +12,7 @@ public class ItemDataManager {
 
     public ArrayList<Item> getItems() {
         return items;
-    }
+    } // maybe needs to return IDM?
 
     public ItemDataManager addItems(Item tItem){
         this.items.add(tItem);
