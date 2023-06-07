@@ -114,14 +114,26 @@ public class InventoryViewModel extends ViewModel {
                 if(snapshot.getValue(Liquid.class) instanceof Liquid){
                     item = snapshot.getValue(Liquid.class);
                 }
-                Log.d("TAG", "onChildChanged: " + item);
-                for (int i = 0; i < items.size(); i++) {
-                    if (items.get(i).getName().equals(item.getName())) {
-                        Log.d("TAG3", "onChildChanged: " + i);
-                        items.set(i, item);
-                    }
-                }
-                Log.d("TAG_All", "onChildChanged: " + items);
+
+
+//                for(int i = 0 ; i < mItems.getValue().getItemList().size(); i++){
+//                    if(item.getName().equals(mItems.getValue().getItemList().get(i))){
+//                        if(item.isOwned() != mItems.getValue().getItemList().get(i).isOwned()){
+//                            item.setOwned(!item.isOwned());
+//                        }
+//                    }
+//                }
+
+
+
+//                Log.d("TAG", "onChildChanged: " + item);
+//                for (int i = 0; i < items.size(); i++) {
+//                    if (items.get(i).getName().equals(item.getName())) {
+//                        Log.d("TAG3", "onChildChanged: " + i);
+//                        items.set(i, item);
+//                    }
+//                }
+//                Log.d("TAG_All", "onChildChanged: " + items);
                 itemDataManager.setItemList(items);
                 mItems.setValue(itemDataManager);
             }
@@ -144,6 +156,7 @@ public class InventoryViewModel extends ViewModel {
         );
         return items;
     }
+
 
 
 

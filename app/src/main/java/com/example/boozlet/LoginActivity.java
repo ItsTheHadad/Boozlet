@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user == null)
             login();
         else
-            moveToMainActivity2(user);
+            moveToMainActivity(user);
 
     }
 
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             // ...
 
-            moveToMainActivity2(user);
+            moveToMainActivity(user);
 
         } else {
             // Sign in failed. If response is null the user canceled the
@@ -62,8 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void moveToMainActivity2(FirebaseUser user) {
-        Intent intent = new Intent(this, MainActivity2.class);
+    private void moveToMainActivity(FirebaseUser user) {
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("username",user.getDisplayName());
         startActivity(intent);
         finish();

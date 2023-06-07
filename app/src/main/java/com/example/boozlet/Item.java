@@ -45,6 +45,7 @@ public abstract class Item {
     public String toString() {
         return "Item{" +
                 "name='" + name + '\'' +
+                ", DBkey='" + DBkey + '\'' +
                 ", owned=" + owned +
                 '}';
     }
