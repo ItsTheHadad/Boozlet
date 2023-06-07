@@ -3,16 +3,16 @@ package com.example.boozlet;
 public abstract class Item {
 
     private String name = "";
-
+    private String DBkey = null;
     private boolean owned = false;
 
     public Item(){}
 
 
-    public Item(String tName){
-        this.name = tName;
-        this.owned = false;
-    }// do i need?
+//    public Item(String tName){
+//        this.name = tName;
+//        this.owned = false;
+//    }// do i need?
 
     public String getName() {
         return name;
@@ -29,6 +29,15 @@ public abstract class Item {
 
     public Item setOwned(boolean iHave) {
         this.owned = iHave;
+        return this;
+    }
+
+    public String getDBkey() {
+        return DBkey;
+    }
+
+    public Item setDBkey(String DBkey) {
+        this.DBkey = DBkey;
         return this;
     }
 

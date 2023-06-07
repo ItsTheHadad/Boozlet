@@ -7,6 +7,7 @@ import android.view.Menu;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,6 +16,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boozlet.databinding.ActivityMainBinding;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +31,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre());
+        firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre().getItemList());
+
+
+
+        //how to add keys instead of numbering the arraylist?
+
+//        DatabaseReference itemListRef = firebaseDatabase.getReference(Constants.DBKeys.ITEMS);
+//        String key = itemListRef.push().getKey();
+//        Item lppp = new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("fghjk")
+//                .setOwned(false);
+//        itemListRef.child(key).setValue(lppp);
+
+        // String key = itemListRef.push().getKey();
+
+
+        //for the first time? //now in database
+
+//        DatabaseReference itemListRef = firebaseDatabase.getReference(Constants.DBKeys.ITEMS).child("itemList");
+//        String key = itemListRef.push().getKey();
+//        itemListRef.child(key).setValue(lppp);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

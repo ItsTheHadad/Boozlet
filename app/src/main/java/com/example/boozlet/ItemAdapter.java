@@ -1,6 +1,7 @@
 package com.example.boozlet;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Item item = getItem(position);
+        Item item = getItem(position); // always getting a null item. @@@
         holder.title_TXT_name.setText(item.getName());
+
         if(item.isOwned())
             holder.item_IMG_favorite.setImageResource(R.drawable.star_full);
         else
@@ -41,12 +43,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     private Item getItem(int position){
-        return this.itemDataManager.getItems().get(position);
+        return this.itemDataManager.getItemList().get(position);
     }
+
 
     @Override
     public int getItemCount() {
-        return this.itemDataManager.getItems() == null ? 0 : itemDataManager.getItems().size();
+        return this.itemDataManager.getItemList() == null ? 0 : itemDataManager.getItemList().size();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder{
@@ -66,6 +69,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                    item.setOwned(false);
                else
                    item.setOwned(true);
+
+                Log.d("bloop", "clicked on "+item.getName()+ " is owned: "+ item.isOwned());
             });
 
         }

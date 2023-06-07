@@ -1,6 +1,7 @@
 package com.example.boozlet.ui.inventory;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class InventoryFragment extends Fragment {
     private Observer<ItemDataManager> observer = new Observer<ItemDataManager>() {
         @Override
         public void onChanged(ItemDataManager itemDataManager) {
+            Log.d("bloop", "changed");
             itemAdapter.updateItems(itemDataManager);
         }
     };
