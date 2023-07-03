@@ -1,9 +1,9 @@
-package com.example.boozlet;
+package com.example.boozlet.Objects;
 
 public abstract class Item {
 
     private String name = "";
-    private String DBkey = null;
+    private String dBkey = null;
     private boolean owned = false;
 
     public Item(){}
@@ -32,12 +32,12 @@ public abstract class Item {
         return this;
     }
 
-    public String getDBkey() {
-        return DBkey;
+    public String getdBkey() {
+        return dBkey;
     }
 
-    public Item setDBkey(String DBkey) {
-        this.DBkey = DBkey;
+    public Item setdBkey(String dBkey) {
+        this.dBkey = dBkey;
         return this;
     }
 
@@ -45,7 +45,7 @@ public abstract class Item {
     public String toString() {
         return "Item{" +
                 "name='" + name + '\'' +
-                ", DBkey='" + DBkey + '\'' +
+                ", dBkey='" + dBkey + '\'' +
                 ", owned=" + owned +
                 '}';
     }

@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boozlet.ItemAdapter;
 import com.example.boozlet.ItemDataManager;
-import com.example.boozlet.R;
 import com.example.boozlet.databinding.FragmentInventoryBinding;
 
 public class InventoryFragment extends Fragment {
@@ -33,7 +30,7 @@ public class InventoryFragment extends Fragment {
         @Override
         public void onChanged(ItemDataManager itemDataManager) {
             Log.d("bloop", "changed");
-            itemAdapter.updateItems(itemDataManager);
+            itemAdapter.updateItems(itemDataManager); // should i change the update items method?
         }
     };
 

@@ -1,4 +1,6 @@
-package com.example.boozlet;
+package com.example.boozlet.Objects;
+
+import com.example.boozlet.Objects.Item;
 
 public class Ingredient {
 

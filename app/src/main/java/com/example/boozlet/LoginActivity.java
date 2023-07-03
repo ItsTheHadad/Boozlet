@@ -1,5 +1,7 @@
 package com.example.boozlet;
 
+import static com.example.boozlet.Constants.movingKeys.USERID;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void moveToMainActivity(FirebaseUser user) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("username",user.getDisplayName());
+        //intent.putExtra("username",user.getDisplayName()); // why?
+        intent.putExtra(USERID ,user.getUid()); // dont forget to use it
+        // public static final String UID = "UID"; // should be in Strings/here/constants??
         startActivity(intent);
         finish();
 
@@ -82,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setTheme(com.google.android.material.R.style.Base_Theme_AppCompat)
+                .setTheme(com.google.android.material.R.style.Base_Theme_AppCompat)//TODO
                 .setLogo(R.drawable.ic_signin_logo) // off center , fix //TODO
                 .setIsSmartLockEnabled(false) // remove when not testings //TODO
                 .build();

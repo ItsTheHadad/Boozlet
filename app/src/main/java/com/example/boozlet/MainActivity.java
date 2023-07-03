@@ -1,5 +1,7 @@
 package com.example.boozlet;
 
+import static com.example.boozlet.Constants.movingKeys.USERID;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -7,7 +9,6 @@ import android.view.Menu;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,12 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boozlet.databinding.ActivityMainBinding;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,34 +27,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main); // is it necessary?
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+        //should i find/accsess the user here?
+        //DBUtil.getInstance()   user
+
+
+
+        // init the fragments?
+        //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre());
-        firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre().getItemList());
+        //only up or down
+        //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre().getItemList());
+
+        //DBUtil.getInstance().addPreToDB2();
+        //only for first time
 
 
+        getUserFromDB(getIntent().getStringExtra(USERID)); //passing it to the user db
 
-        //how to add keys instead of numbering the arraylist?
-
-//        DatabaseReference itemListRef = firebaseDatabase.getReference(Constants.DBKeys.ITEMS);
-//        String key = itemListRef.push().getKey();
-//        Item lppp = new Liquid()
-//
-//                .setAbv(40)
-//                .setSourLevel(0)
-//                .setSugarLevel(0)
-//                .setType()
-//                .setName("fghjk")
-//                .setOwned(false);
-//        itemListRef.child(key).setValue(lppp);
-
-        // String key = itemListRef.push().getKey();
-
-
-        //for the first time? //now in database
-
-//        DatabaseReference itemListRef = firebaseDatabase.getReference(Constants.DBKeys.ITEMS).child("itemList");
-//        String key = itemListRef.push().getKey();
-//        itemListRef.child(key).setValue(lppp);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -86,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+
+    public void getUserFromDB(String userID){
+       DBUtil.getInstance().getUserByID(userID);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -100,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    private void getUserLogin(String uid){
+
+    }
 
 
 

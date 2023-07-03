@@ -1,5 +1,7 @@
 package com.example.boozlet;
 
+import com.example.boozlet.Objects.Item;
+
 import java.util.ArrayList;
 
 public class ItemDataManager {
@@ -13,6 +15,7 @@ public class ItemDataManager {
     public ArrayList<Item> getItemList() {
         return this.itemList;
     } // maybe needs to return IDM?
+
 
     public ItemDataManager addItem(Item tItem) {
         this.itemList.add(tItem);

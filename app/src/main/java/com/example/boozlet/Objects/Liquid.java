@@ -1,4 +1,4 @@
-package com.example.boozlet;
+package com.example.boozlet.Objects;
 
 enum liquidType {
     SYRUP, ALCOHOL, JUICE, SOUR , NONE
