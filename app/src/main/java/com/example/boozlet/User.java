@@ -7,8 +7,7 @@ public class User {
     private ItemDataManager inventory;
 
     public User(){
-
-    }
+    } // for json, the class must have a def ctor that takes no arguments
 
     public User(String userID){
         this.userID = userID;
@@ -35,6 +34,15 @@ public class User {
         this.inventory = inventory;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID='" + userID + '\'' +
+                ", inventory=" + inventory +
+                '}';
+    }
+
 
     //might add a ctor with a premade inventory
 

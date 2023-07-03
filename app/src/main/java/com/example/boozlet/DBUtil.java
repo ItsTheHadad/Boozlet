@@ -1,6 +1,7 @@
 package com.example.boozlet;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -20,16 +21,16 @@ import java.util.ArrayList;
 
 public class DBUtil {
 
-    private static DBUtil instance; // do i need it?
+    private static DBUtil instance = null; // do i need it?
 
     static FirebaseDatabase firebaseDatabase;
 
 
 
 
-
+// all refs are null or not, depends on getters.
     static DatabaseReference usersRef;
-    static DatabaseReference currUserRef = null;
+    static DatabaseReference currUserRef;// = null;
     static DatabaseReference fullListRef;
 
     static DatabaseReference userInventoryRef;
@@ -87,15 +88,12 @@ public class DBUtil {
         DatabaseReference itemListRef = DBUtil.getFullListRef();
 
         String itemKey = item.getdBkey();
-
+            //change below thew item.getdbkey() just to itemkey
         if(item.getdBkey() == null){
             itemKey = itemListRef.push().getKey();
             item.setdBkey(itemKey);
         }
-//        else{
-//            itemListRef.push();
-//        } //need it?
-
+        //should i check and do something if itemkey null?
         itemListRef.child(itemKey).setValue(item);
     }
 
@@ -179,46 +177,81 @@ public class DBUtil {
     }
 
     public void getUserByID(String uid){
+        //this function need to init the useradatamanager curr user, however its not
+        DatabaseReference usersRef = getUsersRef();//useless?
 
-        usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){ // there is a user with that key
-                    User user = snapshot.getValue(User.class);
-                    UserDataManager.getInstance().setCurrUser(user);
+        if(uid != null){
+            usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() { // never inside never data changed?
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){ // there is a user with that key
+                        User user = snapshot.getValue(User.class);
+                        UserDataManager.getInstance().setCurrUser(user);
+                    }
+                    else{
+                        createNewUser(uid);
+                    }
                 }
-                else{
-                    createNewUser(uid);
+
+                //after that the userdatamanager is fixed
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
-            }
+            });
+        }
+        else {
+            //toast a problem;
+        }
 
-            //after that the userdatamanager is fixed
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+
+        //exists or has child?
+
+//        usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() { // never inside never data changed?
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){ // there is a user with that key
+//                    User user = snapshot.getValue(User.class);
+//                    UserDataManager.getInstance().setCurrUser(user);
+//                }
+//                else{
+//                    createNewUser(uid);
+//                }
+//            }
+//
+//            //after that the userdatamanager is fixed
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 
 
     private void createNewUser(String uid){
         User user = new User(uid);
-        usersRef.child(uid).setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        UserDataManager.getInstance().setCurrUser(user);
-                        // add toast welcome new user
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // add toast didnt succed
-                    }
-                });
+        getUsersRef().child(uid).setValue(user); //when to use addOnSuccessListener(new OnSuccessListener<Void>() , and when OnComplete?
+        UserDataManager.getInstance().setCurrUser(user);
+
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) { // while debugging not entering since its async? ask to to explain
+//                       // Log.d("checkOfSuc", "im here");
+//                        UserDataManager.getInstance().setCurrUser(user);
+//                        // add toast welcome new user
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        // add toast didnt succed
+//                    }
+//                });
     }
 
 

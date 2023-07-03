@@ -10,7 +10,7 @@ public class ItemDataManager {
 
     public ItemDataManager() {
         itemList = new ArrayList<>();
-    }
+    } //to use with json, the def ctor takes not arguments.
 
     public ArrayList<Item> getItemList() {
         return this.itemList;
@@ -25,5 +25,12 @@ public class ItemDataManager {
     public ItemDataManager setItemList(ArrayList<Item> itemList) {
         this.itemList = itemList;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemDataManager{" +
+                "itemList=" + itemList +
+                '}';
     }
 }

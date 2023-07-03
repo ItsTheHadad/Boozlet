@@ -4,7 +4,7 @@ public class UserDataManager {
 
     private static UserDataManager instance = null;
 
-    private User currUser;
+    private User currUser = null;
 
     public void removeItemFromInventory(){
         //think of arguments, and how to implement
@@ -12,7 +12,10 @@ public class UserDataManager {
 
 
 
-    private UserDataManager(){}
+    private UserDataManager(){
+       //empty?
+        //add something to init the currUser even if no one called setcurrUser
+    }
 
     public static UserDataManager getInstance(){
         if (instance == null){

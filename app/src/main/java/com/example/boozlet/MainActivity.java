@@ -3,6 +3,7 @@ package com.example.boozlet;
 import static com.example.boozlet.Constants.movingKeys.USERID;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -19,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boozlet.databinding.ActivityMainBinding;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //DBUtil.getInstance()   user
 
         // init the fragments?
-        //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+       // FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre());
         //only up or down
@@ -44,18 +46,20 @@ public class MainActivity extends AppCompatActivity {
         //DBUtil.getInstance().addPreToDB2();
         //only for first time
 
-
-        getUserFromDB(getIntent().getStringExtra(USERID)); //passing it to the user db
-
-        Item item4 = new Liquid()
-                .setAbv(13)
-                .setSourLevel(2)
-                .setSugarLevel(3)
-                .setType()
-                .setName("testing")
-                .setOwned(false);
-
-        DBUtil.getInstance().addItemToCurrUserList(item4);
+  // ----------- put again --------
+        String currUserKey = getIntent().getStringExtra(USERID);
+        getUserFromDB(currUserKey); //passing it to the user db
+       // User user1 = UserDataManager.getInstance().getCurrUser(); //need to pass the user?
+      //  Log.d("tagUser", user1.getUserID());
+//        Item item4 = new Liquid()
+//                .setAbv(13)
+//                .setSourLevel(2)
+//                .setSugarLevel(3)
+//                .setType()
+//                .setName("testing")
+//                .setOwned(false);
+//
+//        DBUtil.getInstance().addItemToCurrUserList(item4);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getUserFromDB(String userID){
-       DBUtil.getInstance().getUserByID(userID);
+      DBUtil.getInstance().getUserByID(userID);
     }
 
 
