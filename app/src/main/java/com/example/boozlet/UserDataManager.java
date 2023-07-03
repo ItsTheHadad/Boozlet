@@ -1,12 +1,10 @@
 package com.example.boozlet;
 
-import com.google.firebase.database.DatabaseReference;
-
 public class UserDataManager {
 
     private static UserDataManager instance = null;
 
-    private User user;
+    private User currUser;
 
     public void removeItemFromInventory(){
         //think of arguments, and how to implement
@@ -23,16 +21,18 @@ public class UserDataManager {
         return instance;
     }
 
-    public void setUser(User user){
+    public void setCurrUser(User currUser){
         // logic inside?
-        this.user = user;
+        this.currUser = currUser;
     }
 
-    public User getUser(){
-        return user;
+    public User getCurrUser(){
+        return currUser;
     }
 
-
+    public String getCurrUserID(){
+        return getCurrUser().getUserID(); //do i need get instance here?
+    }
 
     public boolean isInInventory(String itemKey){
         //return true if the item is in the user inventory

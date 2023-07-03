@@ -4,23 +4,21 @@ public class User {
 
     private String userID = "";
 
-    private ItemDataManager personalInventory;
+    private ItemDataManager inventory;
 
     public User(){
 
     }
 
-
-
     public User(String userID){
         this.userID = userID;
-        this.personalInventory = new ItemDataManager();
+        this.inventory = new ItemDataManager();
     }
     //this.userName = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber(); maybe should add
 
 
 
-    public String getUserID() {
+    public String getUserID() { //to check if its not null / user not null
         return userID;
     }
 
@@ -29,17 +27,15 @@ public class User {
         return this;
     }
 
-    public ItemDataManager getPersonalInventory() {
-        return personalInventory;
+    public ItemDataManager getInventory() {
+        return inventory;
     }
 
-    public User setPersonalInventory(ItemDataManager personalInventory) {
-        this.personalInventory = personalInventory;
+    public User setInventory(ItemDataManager inventory) {
+        this.inventory = inventory;
         return this;
     }
 
     //might add a ctor with a premade inventory
-
-
 
 }

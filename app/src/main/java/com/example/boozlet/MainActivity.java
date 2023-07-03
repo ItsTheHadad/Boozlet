@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.boozlet.Objects.Item;
+import com.example.boozlet.Objects.Liquid;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         //should i find/accsess the user here?
         //DBUtil.getInstance()   user
 
-
-
         // init the fragments?
         //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
         getUserFromDB(getIntent().getStringExtra(USERID)); //passing it to the user db
 
+        Item item4 = new Liquid()
+                .setAbv(13)
+                .setSourLevel(2)
+                .setSugarLevel(3)
+                .setType()
+                .setName("testing")
+                .setOwned(false);
+
+        DBUtil.getInstance().addItemToCurrUserList(item4);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());

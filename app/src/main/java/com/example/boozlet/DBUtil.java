@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+//why some functions are viewable without asking for instance?
+
 public class DBUtil {
 
     private static DBUtil instance; // do i need it?
@@ -27,6 +29,7 @@ public class DBUtil {
 
 
     static DatabaseReference usersRef;
+    static DatabaseReference currUserRef = null;
     static DatabaseReference fullListRef;
 
     static DatabaseReference userInventoryRef;
@@ -80,8 +83,6 @@ public class DBUtil {
         return items;
     }
 
-
-
     public void saveItemToDB(Item item){ // for the first time when its added.
         DatabaseReference itemListRef = DBUtil.getFullListRef();
 
@@ -109,6 +110,73 @@ public class DBUtil {
         }
     }
 
+    public void addItemToCurrUserList(Item item){
+        DatabaseReference tempUserRef = getCurrUserRef(); //gets the current user ref;
+        tempUserRef.addListenerForSingleValueEvent(new ValueEventListener() { //listener for the curr user;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) { // i dont know why that specifically
+                User tempUser = snapshot.getValue(User.class); // get the user from snapshot;
+                if(tempUser != null){
+                    ItemDataManager tempInventory = tempUser.getInventory(); //get the inventory from that user to a temp inv
+
+                    tempInventory.addItem(item); // add the item to that inventory (maybe its a problem, and want to the inventory before copy?)
+
+                    tempUserRef.setValue(tempUser); // might not be true
+
+                }
+                else{
+                    // error user is null;
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public ItemDataManager retrieveUserInventoryFromDB(DatabaseReference userRef) {
+
+        ItemDataManager tempInventory = new ItemDataManager(); //might not work because it async, will "die" at the end of the func;
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User tempUser = snapshot.getValue(User.class);
+                if(tempUser != null){
+                    tempInventory.setItemList(tempUser.getInventory().getItemList()); // same reason from above;
+                }
+                else{
+                    tempInventory.setItemList(null);
+                }
+            } //also, notice its not really returning the itemDM, but the arraylist inside only.
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //handle error?
+            }
+        });
+
+        return tempInventory; //same reason from above;
+    }
+
+
+    public DatabaseReference getCurrUserRef(){
+        if(currUserRef == null){
+            currUserRef = getUsersRef().child(UserDataManager.getInstance().getCurrUserID());
+        }
+        return currUserRef;
+    }
+
+
+    public static DatabaseReference getUsersRef() {
+        return usersRef;
+    }
+
+    public static void setUsersRef(DatabaseReference usersRef) {
+        DBUtil.usersRef = usersRef;
+    }
 
     public void getUserByID(String uid){
 
@@ -117,7 +185,7 @@ public class DBUtil {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){ // there is a user with that key
                     User user = snapshot.getValue(User.class);
-                    UserDataManager.getInstance().setUser(user);
+                    UserDataManager.getInstance().setCurrUser(user);
                 }
                 else{
                     createNewUser(uid);
@@ -141,7 +209,7 @@ public class DBUtil {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        UserDataManager.getInstance().setUser(user);
+                        UserDataManager.getInstance().setCurrUser(user);
                         // add toast welcome new user
                     }
                 })
