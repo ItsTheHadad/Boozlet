@@ -171,7 +171,7 @@ public class InventoryViewModel extends ViewModel {
     public  ArrayList<Item> getItemsFromFirebase3(){
         ItemDataManager itemDataManager = new ItemDataManager();
         ArrayList<Item> items = new ArrayList<>();
-        DBUtil.getFullListRef().addListenerForSingleValueEvent(new ValueEventListener() {
+        DBUtil.getInstance().getFullListRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot iListSnap : snapshot.getChildren()){
@@ -199,7 +199,7 @@ public class InventoryViewModel extends ViewModel {
         ItemDataManager itemDataManager = new ItemDataManager();
         ArrayList<Item> items = new ArrayList<>(); // Allways made?
 
-        DBUtil.getFullListRef().addChildEventListener(new ChildEventListener() {
+        DBUtil.getInstance().getFullListRef().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Item item = null;

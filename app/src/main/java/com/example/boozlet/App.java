@@ -7,7 +7,8 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
 
-        DBUtil.initDBUtil(this); // maybe per fragment?
     }
 }
 
+        //DBUtil.initDBUtil(this); // maybe per fragment?
+        //wanted to put that in the oncreate if dbutil had context

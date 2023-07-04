@@ -21,45 +21,105 @@ import java.util.ArrayList;
 
 public class DBUtil {
 
+    //@@@class members
+
+    //instance, reference to this class;
     private static DBUtil instance = null; // do i need it?
 
-    static FirebaseDatabase firebaseDatabase;
+    //context, do i really need it in fragments?
+    //private static Context appContext; - if yes get it back, and the methods related
+    //mants a init with context who check instance and calls a ctor with context
+    //a empty just regular getInstance, without a check
+    //a ctor  gets cotext and this.appContext = context;
 
 
 
-
-// all refs are null or not, depends on getters.
-    static DatabaseReference usersRef;
-    static DatabaseReference currUserRef;// = null;
-    static DatabaseReference fullListRef;
-
-    static DatabaseReference userInventoryRef;
-
-    private static Context appContext; // necessary in a fragments?
-
-    private DBUtil(Context context){this.appContext = context;}
-
-    public static DBUtil getInstance() {return instance;} // i dont really use it?
-
-    public static DBUtil initDBUtil( Context context){
-        if (instance == null)
-            instance = new DBUtil(context);
-
-        firebaseDatabase = FirebaseDatabase.getInstance(); // should it be here?
-
-        fullListRef = firebaseDatabase.getReference(Constants.DBKeys.ITEMS);
-        usersRef = firebaseDatabase.getReference(Constants.DBKeys.USER_KEYS);
+    //the database var itself;
+    private FirebaseDatabase firebaseDatabase = null; // the database
 
 
-        //problem is here, how can i use it if the init is in the app, before user even initted;
-        //userInventoryRef = usersRef.child(UserDataManager.getInstance().getUser().getUserID());
+    //References to specific areas in the DB
+    // should refs be null or not?, depends on getters.
+    //might be bad implementation, maybe all refs should be final somewhere?
+    private DatabaseReference usersRef = null;
+    private DatabaseReference currUserRef = null;
+    private DatabaseReference fullListRef = null;
 
-       // String brrr = userInventoryRef.push().getKey();
-      //  userInventoryRef.child(brrr).setValue(PreDatabaseData.getItemsPre().getItemList());
+    // static DatabaseReference userInventoryRef;
+    // problem is here, how can i use it if the init is in the app, before user even initted;
+    //userInventoryRef = usersRef.child(UserDataManager.getInstance().getUser().getUserID());
+    // String brrr = userInventoryRef.push().getKey();
+    //  userInventoryRef.child(brrr).setValue(PreDatabaseData.getItemsPre().getItemList());
 
 
+    //@@@class methods
+
+    //private constructor
+    private DBUtil(){
+        if(this.firebaseDatabase == null){ //neccessary?
+            this.firebaseDatabase = FirebaseDatabase.getInstance();
+        }
+    }
+
+    //static method who gets the static ref of its class;
+    public static DBUtil getInstance() {
+        if(instance == null){
+            instance = new DBUtil();
+        }
         return instance;
     }
+
+
+    //@@@getters and setters
+
+    public FirebaseDatabase getFirebaseDatabase() {
+        if(this.firebaseDatabase == null){
+           setFirebaseDatabase();
+        }
+        return this.firebaseDatabase;
+    }
+    public DBUtil setFirebaseDatabase() { // should i have an option to another db instance in args?
+        this.firebaseDatabase = FirebaseDatabase.getInstance();
+        return this;
+    }
+
+    public DatabaseReference getCurrUserRef(){
+        if(currUserRef == null){
+            setCurrUserRef(getUsersRef().child(UserDataManager.getInstance().getCurrUserID()));
+        }
+        return currUserRef;
+    }
+    public DBUtil setCurrUserRef(DatabaseReference currUserRef) {
+        this.currUserRef = currUserRef;
+        return this;
+    }
+
+    public DatabaseReference getUsersRef() {
+        if(usersRef == null){
+            setUsersRef(getFirebaseDatabase().getReference(Constants.DBKeys.USER_KEYS));
+        }
+        return usersRef;
+    }
+    public DBUtil setUsersRef(DatabaseReference usersRef) {
+        this.usersRef = usersRef;
+        return this;
+    }
+
+    public DatabaseReference getFullListRef() {
+        if(fullListRef == null){
+            setFullListRef(getFirebaseDatabase().getReference(Constants.DBKeys.ITEMS));
+        }
+        return fullListRef;
+    }
+    public DBUtil setFullListRef(DatabaseReference fullListRef) {
+        this.fullListRef = fullListRef;
+        return this;
+    }
+
+    // do i also need removers for the instances which makes them null?
+
+
+    //@@@methods
 
     public ArrayList<Item> getItemsFromFirebase(){
         ArrayList<Item> items = new ArrayList<>();
@@ -85,7 +145,7 @@ public class DBUtil {
     }
 
     public void saveItemToDB(Item item){ // for the first time when its added.
-        DatabaseReference itemListRef = DBUtil.getFullListRef();
+        DatabaseReference itemListRef = DBUtil.getInstance().getFullListRef();
 
         String itemKey = item.getdBkey();
             //change below thew item.getdbkey() just to itemkey
@@ -159,23 +219,6 @@ public class DBUtil {
         return tempInventory; //same reason from above;
     }
 
-
-    public DatabaseReference getCurrUserRef(){
-        if(currUserRef == null){
-            currUserRef = getUsersRef().child(UserDataManager.getInstance().getCurrUserID());
-        }
-        return currUserRef;
-    }
-
-
-    public static DatabaseReference getUsersRef() {
-        return usersRef;
-    }
-
-    public static void setUsersRef(DatabaseReference usersRef) {
-        DBUtil.usersRef = usersRef;
-    }
-
     public void getUserByID(String uid){
         //this function need to init the useradatamanager curr user, however its not
         DatabaseReference usersRef = getUsersRef();//useless?
@@ -232,11 +275,11 @@ public class DBUtil {
 
     }
 
-
     private void createNewUser(String uid){
         User user = new User(uid);
         getUsersRef().child(uid).setValue(user); //when to use addOnSuccessListener(new OnSuccessListener<Void>() , and when OnComplete?
         UserDataManager.getInstance().setCurrUser(user);
+        Log.d("userTag", UserDataManager.getInstance().getCurrUser().getUserID());
 
 //                .addOnSuccessListener(new OnSuccessListener<Void>() {
 //                    @Override
@@ -255,11 +298,5 @@ public class DBUtil {
     }
 
 
-    public static DatabaseReference getFullListRef() {
-        return fullListRef;
-    }
 
-    public static void setFullListRef(DatabaseReference fullListRef) {
-        DBUtil.fullListRef = fullListRef;
-    }
 }

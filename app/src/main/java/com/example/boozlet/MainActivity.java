@@ -49,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
   // ----------- put again --------
         String currUserKey = getIntent().getStringExtra(USERID);
         getUserFromDB(currUserKey); //passing it to the user db
-       // User user1 = UserDataManager.getInstance().getCurrUser(); //need to pass the user?
-      //  Log.d("tagUser", user1.getUserID());
+
+        //that line is the problem
+        //User user1 = UserDataManager.getInstance().getCurrUser(); //need to pass the user?
+        //Log.d("tagUser", user1.getUserID());
 //        Item item4 = new Liquid()
 //                .setAbv(13)
 //                .setSourLevel(2)
