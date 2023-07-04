@@ -104,24 +104,24 @@ public class InventoryViewModel extends ViewModel {
         DatabaseReference databaseReference = firebaseDatabase.getReference(Constants.DBKeys.ITEMS);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("bloop", "onChildAdded: ");
-                Item item = null;
-                if(snapshot.getValue(Liquid.class) instanceof Liquid){
-                    item = snapshot.getValue(Liquid.class);
-                } // need to add key for items
-                items.add(item);
-                itemDataManager.setItemList(items);
-                mItems.setValue(itemDataManager);
-            }
+                                                    @Override
+                                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                        Log.d("bloop", "onChildAdded: ");
+                                                        Item item = null;
+                                                        if(snapshot.getValue(Liquid.class) instanceof Liquid){
+                                                            item = snapshot.getValue(Liquid.class);
+                                                        } // need to add key for items
+                                                        items.add(item);
+                                                        itemDataManager.setItemList(items);
+                                                        mItems.setValue(itemDataManager);
+                                                    }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Item item = null;
-                if(snapshot.getValue(Liquid.class) instanceof Liquid){
-                    item = snapshot.getValue(Liquid.class);
-                }
+                                                    @Override
+                                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                        Item item = null;
+                                                        if(snapshot.getValue(Liquid.class) instanceof Liquid){
+                                                            item = snapshot.getValue(Liquid.class);
+                                                        }
 
 
 //                for(int i = 0 ; i < mItems.getValue().getItemList().size(); i++){
@@ -143,26 +143,26 @@ public class InventoryViewModel extends ViewModel {
 //                    }
 //                }
 //                Log.d("TAG_All", "onChildChanged: " + items);
-                itemDataManager.setItemList(items);
-                mItems.setValue(itemDataManager);
-            }
+                                                        itemDataManager.setItemList(items);
+                                                        mItems.setValue(itemDataManager);
+                                                    }
 
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                                    @Override
+                                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-            }
+                                                    }
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                    @Override
+                                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            }
+                                                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        }
+                                                    }
+                                                }
         );
         return items;
     }

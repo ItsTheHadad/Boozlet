@@ -20,6 +20,7 @@ public class UserDataManager {
     }
 
 
+
     //static method who gets the static ref of its class;
     public static UserDataManager getInstance(){
         if (instance == null){

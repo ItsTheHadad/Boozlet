@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.boozlet.Objects.Item;
 import com.example.boozlet.Objects.Liquid;
@@ -30,8 +31,7 @@ public class DBUtil {
     //private static Context appContext; - if yes get it back, and the methods related
     //mants a init with context who check instance and calls a ctor with context
     //a empty just regular getInstance, without a check
-    //a ctor  gets cotext and this.appContext = context;
-
+    //a ctor  gets context and this.appContext = context;
 
 
     //the database var itself;
@@ -248,30 +248,6 @@ public class DBUtil {
             //toast a problem;
         }
 
-
-
-
-        //exists or has child?
-
-//        usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() { // never inside never data changed?
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){ // there is a user with that key
-//                    User user = snapshot.getValue(User.class);
-//                    UserDataManager.getInstance().setCurrUser(user);
-//                }
-//                else{
-//                    createNewUser(uid);
-//                }
-//            }
-//
-//            //after that the userdatamanager is fixed
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
     }
 
