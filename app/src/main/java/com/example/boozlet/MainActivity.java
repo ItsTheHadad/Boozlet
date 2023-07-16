@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         //***************** on first run only *******************//TODO
 
-        DBUtil.getInstance().addPreToDB2();
-        DBUtil.getInstance().addPrePreRecipeToDB2();
+        //DBUtil.getInstance().addPreToDB2();
+       // DBUtil.getInstance().addPrePreRecipeToDB2();
 
 
         // ----------- put again --------
