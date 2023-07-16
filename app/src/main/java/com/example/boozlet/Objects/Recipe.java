@@ -1,23 +1,28 @@
 package com.example.boozlet.Objects;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 
 public class Recipe {
 
     private String name = "";
-    private ArrayList<Ingredient> recipe;
+
+    private String picURL = "";
+
+    private ArrayList<Ingredient> ingredientList = new ArrayList<>();
+
+    @Exclude
+    private int missingIngredients; // dont want it in the database, only to calculate it each time
+
 
     public Recipe(){
 
     }
 
-    public Recipe(String tName){
-        this.name = tName;
-        this.recipe = new ArrayList<>();
-    }
 
-    public Recipe(String tName, ArrayList<Ingredient> arr){
-        this.name = tName;
-        this.recipe = arr;
-    }
+
+
+
+
 }

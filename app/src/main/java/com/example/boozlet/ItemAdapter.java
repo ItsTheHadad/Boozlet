@@ -18,9 +18,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private Context context; //neccesary?
     private ItemDataManager itemDataManager;
 
-    public ItemAdapter(Context context, ItemDataManager itemDataManager){
+    private boolean isOwned;
+
+    public ItemAdapter(Context context, ItemDataManager itemDataManager, boolean isOwned){
         this.context = context;
-        this.itemDataManager = itemDataManager; // maybe arraylist?
+        this.itemDataManager = itemDataManager;
+        this.isOwned = isOwned;
     }
 
 
@@ -34,7 +37,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Item item = getItem(position); // always getting a null item. @@@
+        Item item = getItem(position);
         holder.title_TXT_name.setText(item.getName());
 
         if(item.isOwned()) // should be only from the user not the db main list
@@ -65,17 +68,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             title_TXT_name = itemView.findViewById(R.id.title_TXT_name);
 
             item_IMG_favorite.setOnClickListener(v ->{ // need a callback for clicked
-               Item item = getItem(getAdapterPosition());
-               if(item.isOwned())
-                   item.setOwned(false); // set it in db maybe?
-               else
-                   item.setOwned(true);
+                Item item = getItem(getAdapterPosition());
+                if(item.isOwned()) {
+                    item.setOwned(false);
+                    DBUtil.removeOwnedItem(item.getName());
+                }
+                else {
+                    item.setOwned(true);
+                    DBUtil.addOwnedItem(item.getName());
+                }
 
-               //updateItems(itemDataManager); //makes it work buy why
-               //notifyItemChanged(getAdapterPosition()); //@@ makes it work but why
-                //need to update the db after that ? or is it changed
-
-                Log.d("bloop", "clicked on "+item.getName()+ " is owned: "+ item.isOwned());
+                notifyItemChanged(getAdapterPosition());
             });
 
         }

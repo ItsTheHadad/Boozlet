@@ -11,15 +11,8 @@ public class UserDataManager {
     //the curr user var
     private User currUser = null;
 
-    private UserDataManager(){ //major problem, cant init curr user
-        //this.currUser = new User(); // adding it wont change
-
-
-       //empty? check about it
-        //add something to init the currUser even if no one called setcurrUser
+    private UserDataManager(){
     }
-
-
 
     //static method who gets the static ref of its class;
     public static UserDataManager getInstance(){
@@ -34,7 +27,6 @@ public class UserDataManager {
         return currUser;
     }
     public void setCurrUser(User currUser){
-        // logic inside?
         this.currUser = currUser;
     }
 
@@ -42,16 +34,5 @@ public class UserDataManager {
     public String getCurrUserID(){
         return getCurrUser().getUserID(); //do i need get instance here?
     }
-
-    public boolean isInInventory(String itemKey){
-        //return true if the item is in the user inventory
-        return true;
-    }
-
-    public void removeItemFromInventory(){
-        //think of arguments, and how to implement
-    }
-
-
 
 }

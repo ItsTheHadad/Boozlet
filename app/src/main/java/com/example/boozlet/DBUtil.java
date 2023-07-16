@@ -229,6 +229,8 @@ public class DBUtil {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){ // there is a user with that key
                         User user = snapshot.getValue(User.class);
+
+
                         UserDataManager.getInstance().setCurrUser(user);
                     }
                     else{

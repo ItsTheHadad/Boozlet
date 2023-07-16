@@ -7,13 +7,12 @@ public class User {
     private ItemDataManager inventory;
 
     public User(){
-    } // for json, the class must have a def ctor that takes no arguments
+    }
 
     public User(String userID){
-        this.userID = userID;
+        setUserID(userID);
         this.inventory = new ItemDataManager();
     }
-    //this.userName = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber(); maybe should add
 
 
 
@@ -42,8 +41,5 @@ public class User {
                 ", inventory=" + inventory +
                 '}';
     }
-
-
-    //might add a ctor with a premade inventory
 
 }

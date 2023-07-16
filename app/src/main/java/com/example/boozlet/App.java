@@ -10,5 +10,4 @@ public class App extends Application{
     }
 }
 
-        //DBUtil.initDBUtil(this); // maybe per fragment?
-        //wanted to put that in the oncreate if dbutil had context
+

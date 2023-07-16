@@ -1,110 +1,200 @@
 package com.example.boozlet;
 
 
+import com.example.boozlet.Objects.Ingredient;
+import com.example.boozlet.Objects.Item;
 import com.example.boozlet.Objects.Liquid;
+import com.example.boozlet.Objects.Recipe;
+
+import java.util.ArrayList;
 
 public class PreDatabaseData {
 
-    public static ItemDataManager getItemsPre() {
-        ItemDataManager itemDataManager = new ItemDataManager();
+    public static ItemDataManager itemsManager = new ItemDataManager();
+    public static ArrayList<Recipe> recipeManager = new ArrayList<>();
 
 
-//        String key = databaseReference.push().getKey();
-//        databaseReference.child(key).setValue(item);
+    public static void preMadeItems(){
 
-
-
-
-        itemDataManager.addItem(new Liquid()
-
+        Item vodka = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
                 .setName("Vodka")
-                .setOwned(false)
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
 
+        Item gin = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
                 .setName("Gin")
-                .setOwned(false)
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
 
+        Item rum = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
-                .setName("White Rum")
-                .setOwned(false)
+                .setName("Rum")
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
 
+        Item tequila = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
                 .setName("Tequila")
-                .setOwned(false)
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
-
+        Item limeJuice = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
-                .setName("Anise")
-                .setOwned(false)
+                .setName("Lime Juice")
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
 
+        Item gingerBeer = new Liquid()
                 .setAbv(40)
                 .setSourLevel(0)
                 .setSugarLevel(0)
                 .setType()
-                .setName("Whisky")
-                .setOwned(false)
+                .setName("Ginger Beer")
+                .setOwned(false);
 
-        );
 
-        itemDataManager.addItem(new Liquid()
 
-                .setAbv(40)
-                .setSourLevel(0)
-                .setSugarLevel(0)
-                .setType()
-                .setName("Congac")
-                .setOwned(false)
+        itemsManager.addItem(vodka);
+        itemsManager.addItem(gin);
+        itemsManager.addItem(rum);
+        itemsManager.addItem(tequila);
+        itemsManager.addItem(limeJuice);
+        itemsManager.addItem(gingerBeer);
 
-        );
-
-        itemDataManager.addItem(new Liquid()
-
-                .setAbv(24)
-                .setSourLevel(0)
-                .setSugarLevel(20)
-                .setType()
-                .setName("Campari")
-                .setOwned(false)
-
-        );
-
-        return itemDataManager;
     }
+
+
+    public static ItemDataManager getItemsPre() {
+        ItemDataManager itemDataManager = new ItemDataManager();
+
+        itemDataManager = itemsManager;
+        return itemDataManager;
+
+
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Vodka")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Gin")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("White Rum")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Tequila")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Anise")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Whisky")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(40)
+//                .setSourLevel(0)
+//                .setSugarLevel(0)
+//                .setType()
+//                .setName("Congac")
+//                .setOwned(false)
+//
+//        );
+//
+//        itemDataManager.addItem(new Liquid()
+//
+//                .setAbv(24)
+//                .setSourLevel(0)
+//                .setSugarLevel(20)
+//                .setType()
+//                .setName("Campari")
+//                .setOwned(false)
+//
+//        );
+//
+//        return itemDataManager;
+    }
+
+
+
+
+    public static ArrayList<Recipe> getRecipesPre(){
+        ArrayList<Ingredient> allIngredients = getItemsPre().getItemList();
+
+    }
+
+
+
+
+
 
 
 

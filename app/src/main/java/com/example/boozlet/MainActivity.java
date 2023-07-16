@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         // init the fragments?
        // FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-        //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre());
+       // firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre());
         //only up or down
         //firebaseDatabase.getReference(Constants.DBKeys.ITEMS).setValue(PreDatabaseData.getItemsPre().getItemList());
 
-        //DBUtil.getInstance().addPreToDB2();
+        DBUtil.getInstance().addPreToDB2();
         //only for first time
 
   // ----------- put again --------

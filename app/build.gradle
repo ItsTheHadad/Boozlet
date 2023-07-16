@@ -59,9 +59,6 @@ dependencies {
     //firebase Auth:
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
 
-    //firestore cloud and database - to delete?
-    implementation 'com.google.firebase:firebase-firestore'
-
     //realtime database
     implementation 'com.google.firebase:firebase-database'
 
