@@ -17,10 +17,9 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private Context context; //neccesary?
-    private ItemDataManager itemDataManager;
-
+    private Context context;
     private boolean isOwned;
+    private ItemDataManager itemDataManager;
 
     public ItemAdapter(Context context, ItemDataManager itemDataManager, boolean isOwned){
         this.context = context;
@@ -39,13 +38,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Item item = getItem(position);
+        Item item = getItem(position); // always getting a null item. @@@
         holder.title_TXT_name.setText(item.getName());
 
-        if(item.isOwned()) // should be only from the user not the db main list
-            holder.item_IMG_favorite.setImageResource(R.drawable.star_full);
-        else
-            holder.item_IMG_favorite.setImageResource(R.drawable.star_empty);
+        if(isOwned) {
+            holder.item_IMG_favorite.setVisibility(View.GONE);
+        } else {
+            if(item.isOwned())
+                holder.item_IMG_favorite.setImageResource(R.drawable.star_full);
+            else
+                holder.item_IMG_favorite.setImageResource(R.drawable.star_empty);
+        }
     }
 
     private Item getItem(int position){

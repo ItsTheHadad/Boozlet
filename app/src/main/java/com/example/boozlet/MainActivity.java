@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.boozlet.ui.fromAnywhere.AddInventoryActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //***************** on first run only *******************//TODO
 
         //DBUtil.getInstance().addPreToDB2();
-        // DBUtil.getInstance().addPrePreRecipeToDB2();
+         //DBUtil.getInstance().addPrePreRecipeToDB2();
 
         // ----------- put again --------
         String currUserKey = getIntent().getStringExtra(USERID);

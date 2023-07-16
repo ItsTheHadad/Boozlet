@@ -19,7 +19,7 @@ import com.example.boozlet.ui.inventory.InventoryViewModel;
 
 public class AddInventoryActivity extends AppCompatActivity {
 
-    private RecyclerView mainLSTItems; // should it be final? like when generating
+    private RecyclerView mainLSTItems;
     private ItemAdapter itemAdapter;
 
     @Override
@@ -30,8 +30,7 @@ public class AddInventoryActivity extends AppCompatActivity {
                 new ViewModelProvider(this).get(InventoryViewModel.class);
 
         mainLSTItems = findViewById(R.id.main_LST_items);
-        //mainLSTItems.setHasFixedSize(true);
-        //not sure if needed
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mainLSTItems.setLayoutManager(linearLayoutManager);
@@ -56,7 +55,6 @@ public class AddInventoryActivity extends AppCompatActivity {
     private Observer<ItemDataManager> observer = new Observer<ItemDataManager>() {
         @Override
         public void onChanged(ItemDataManager itemDataManager) {
-            Log.d("bloop", "changed");
             itemAdapter.updateItems(itemDataManager); // should i change the update items method?
         }
     };

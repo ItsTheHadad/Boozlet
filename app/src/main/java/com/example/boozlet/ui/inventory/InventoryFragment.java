@@ -19,7 +19,7 @@ import com.example.boozlet.databinding.FragmentInventoryBinding;
 
 public class InventoryFragment extends Fragment {
 
-    private RecyclerView mainLSTItems; // should it be final? like when generating
+    private RecyclerView mainLSTItems; 
 
     private ItemAdapter itemAdapter;
 
@@ -29,29 +29,26 @@ public class InventoryFragment extends Fragment {
     private Observer<ItemDataManager> observer = new Observer<ItemDataManager>() {
         @Override
         public void onChanged(ItemDataManager itemDataManager) {
-            Log.d("bloop", "changed");
-            itemAdapter.updateItems(itemDataManager); // should i change the update items method?
+            itemAdapter.updateItems(itemDataManager);
         }
     };
-
-
+    private InventoryViewModel inventoryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        InventoryViewModel inventoryViewModel =
+        inventoryViewModel =
                 new ViewModelProvider(this).get(InventoryViewModel.class);
 
         binding = FragmentInventoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         mainLSTItems = binding.mainLSTItems;
-        //mainLSTItems.setHasFixedSize(true);
-        //not sure if needed
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mainLSTItems.setLayoutManager(linearLayoutManager);
 
-        itemAdapter = new ItemAdapter(getContext(),inventoryViewModel.getItems().getValue());
+        itemAdapter = new ItemAdapter(getContext(),inventoryViewModel.getItems().getValue(),true);
 
         mainLSTItems.setAdapter(itemAdapter);
         inventoryViewModel.getItems().observe(getViewLifecycleOwner(),observer);
@@ -60,6 +57,11 @@ public class InventoryFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        inventoryViewModel.getItemsFromFirebase(true);
+    }
 
     @Override
     public void onDestroyView() {

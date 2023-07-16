@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_inventory" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_recipes"
         android:name="com.example.boozlet.ui.recipe.RecipeFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_recipes"
         tools:layout="@layout/fragment_recipes" />
 </navigation>
