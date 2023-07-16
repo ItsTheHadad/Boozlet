@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Boozlet" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <!-- Primary App Color -->
+    <style name="Base.Theme.Boozlet" parent="Theme.AppCompat.Light.NoActionBar">
+
         <item name="colorPrimary">@color/banana</item>
+        <item name="colorPrimaryDark">@color/brown</item>
+        <item name="colorAccent">@color/light_banana</item>
 
     </style>
 
@@ -15,7 +15,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Boozlet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Boozlet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
     <style name="Theme.Boozlet.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

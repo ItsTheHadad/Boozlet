@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Recipe {
 
     private String name = "";
-    private String picURL = "";
+    private int picture;
     private ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
     @Exclude
@@ -26,12 +26,12 @@ public class Recipe {
         return this;
     }
 
-    public String getPicURL() {
-        return picURL;
+    public int getPicture() {
+        return picture;
     }
 
-    public Recipe setPicURL(String picURL) {
-        this.picURL = picURL;
+    public Recipe setPicture(int picture) {
+        this.picture = picture;
         return this;
     }
 

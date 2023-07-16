@@ -40,6 +40,7 @@
             android:minLines="1"
             android:text="Item Name"
             android:textSize="24sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
     </RelativeLayout>

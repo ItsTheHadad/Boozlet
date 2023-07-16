@@ -49,7 +49,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ItemViewHo
         holder.tvIngredient2.setText(ing2);
         holder.tvIngredient3.setText(ing3);
         Glide.with(context)
-                .load(recipe.getPicURL())
+                .load(recipe.getPicture())
                 .into(holder.ivPic);
 
 
