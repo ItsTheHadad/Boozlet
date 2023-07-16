@@ -1,6 +1,6 @@
 package com.example.boozlet.Objects;
 
-public abstract class Item {
+public class Item {
 
     private String name = "";
     private String dBkey = null;
@@ -8,17 +8,11 @@ public abstract class Item {
 
     public Item(){}
 
-
-//    public Item(String tName){
-//        this.name = tName;
-//        this.owned = false;
-//    }// do i need?
-
     public String getName() {
         return name;
     }
 
-    public Item setName(String name) {  //is it ok? because its an abstract.
+    public Item setName(String name) {
         this.name = name;
         return this;
     }

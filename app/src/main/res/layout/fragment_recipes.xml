@@ -12,38 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_bg_title"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         >
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/title_TXT_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="6dp"
-            android:layout_toStartOf="@id/title_IMG_arrow"
-            android:maxLines="1"
-            android:minLines="1"
-            android:text="My Ingredients"
-            android:textColor="@color/soft_black300"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/title_IMG_arrow"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="6dp"
-            app:srcCompat="@drawable/arrow" />
 
 
     </RelativeLayout>
@@ -53,7 +24,7 @@
     <RelativeLayout
         android:id="@+id/rl_items"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="12dp"
         android:layout_below="@+id/inv_LST_title"
         android:layout_marginTop="6dp"
@@ -67,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:visibility="visible"
-            tools:listitem="@layout/each_item" />
+            tools:listitem="@layout/recipe_item" />
 
     </RelativeLayout>
     <!-- end rv -->

@@ -10,11 +10,11 @@ public class ItemDataManager {
 
     public ItemDataManager() {
         itemList = new ArrayList<>();
-    } //to use with json, the def ctor takes not arguments.
+    }
 
     public ArrayList<Item> getItemList() {
         return this.itemList;
-    } // maybe needs to return IDM?
+    }
 
 
     public ItemDataManager addItem(Item tItem) {

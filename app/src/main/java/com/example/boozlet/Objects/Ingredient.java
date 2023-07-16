@@ -1,7 +1,5 @@
 package com.example.boozlet.Objects;
 
-import com.example.boozlet.Objects.Item;
-
 public class Ingredient {
 
     Item item;
@@ -13,8 +11,28 @@ public class Ingredient {
     }
 
     public Ingredient(Item tItem, int tMl){
-        this.item = tItem;
-        this.ml = tMl;
+        setItem(tItem);
+        setMl(tMl);
+    }
+
+
+    public Item getItem() {
+        return item;
+    }
+
+    public Ingredient setItem(Item item) {
+        this.item = item;
+        return this;
+    }
+
+    public int getMl() {
+        return ml;
+    }
+
+    public Ingredient setMl(int ml) {
+        this.ml = ml;
+        return this;
     }
 
 }
+

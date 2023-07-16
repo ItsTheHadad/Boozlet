@@ -4,15 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/banana"
-    tools:context=".ui.inventory.InventoryFragment">
+    android:background="@color/banana">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Ingredients List"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <RelativeLayout
         android:id="@+id/inv_LST_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_bg_title"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         >
@@ -27,7 +44,7 @@
             android:layout_toStartOf="@id/title_IMG_arrow"
             android:maxLines="1"
             android:minLines="1"
-            android:text="My Ingredients"
+            android:text="Select Ingredients"
             android:textColor="@color/soft_black300"
             android:textSize="24sp"
             android:textStyle="bold"

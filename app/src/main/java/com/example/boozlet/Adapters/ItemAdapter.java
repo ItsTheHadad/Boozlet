@@ -1,7 +1,6 @@
-package com.example.boozlet;
+package com.example.boozlet.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.boozlet.DBUtil;
+import com.example.boozlet.ItemDataManager;
 import com.example.boozlet.Objects.Item;
+import com.example.boozlet.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 

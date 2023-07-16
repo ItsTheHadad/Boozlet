@@ -1,10 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@color/light_banana"
+    >
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textTop"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome\n to\n Boozlet"
+        android:textSize="70dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textMid"
+        android:layout_below="@id/textTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Go to the inventory tab to check your inventory."
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginStart="20dp"
+        >
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textBot"
+        android:layout_below="@id/textMid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Go to the recipe tab to check available recipes."
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginStart="20dp"
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textBot2"
+        android:layout_below="@id/textBot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Use the floating button any time to add ingredients to the inventory."
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:textAlignment="center"
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
 
     <TextView
         android:id="@+id/text_home"
@@ -19,4 +79,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

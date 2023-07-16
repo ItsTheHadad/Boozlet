@@ -48,27 +48,21 @@ public class LoginActivity extends AppCompatActivity {
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
-            // Successfully signed in
+
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            // ...
 
             moveToMainActivity(user);
 
         } else {
-            // Sign in failed. If response is null the user canceled the
-            // sign-in flow using the back button. Otherwise check
-            // response.getError().getErrorCode() and handle the error.
-            // ...
+
             Toast.makeText(this,"Unsuccessful Login! , try again",Toast.LENGTH_SHORT).show();
-            //repeat?? //TODO
+
         }
     }
 
     private void moveToMainActivity(FirebaseUser user) {
         Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("username",user.getDisplayName()); // why?
-        intent.putExtra(USERID ,user.getUid()); // dont forget to use it
-        // public static final String UID = "UID"; // should be in Strings/here/constants??
+        intent.putExtra(USERID ,user.getUid());
         startActivity(intent);
         finish();
 
@@ -86,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setTheme(com.google.android.material.R.style.Base_Theme_AppCompat)//TODO
-                .setLogo(R.drawable.ic_signin_logo) // off center , fix //TODO
+                .setTheme(com.google.android.material.R.style.Base_Theme_AppCompat)
+                .setLogo(R.drawable.ic_signin_logo)
                 .setIsSmartLockEnabled(false) // remove when not testings //TODO
                 .build();
         signInLauncher.launch(signInIntent);

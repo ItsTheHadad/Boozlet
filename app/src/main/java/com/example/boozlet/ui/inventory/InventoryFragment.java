@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.boozlet.ItemAdapter;
+import com.example.boozlet.Adapters.ItemAdapter;
 import com.example.boozlet.ItemDataManager;
 import com.example.boozlet.databinding.FragmentInventoryBinding;
 
